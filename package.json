@@ -1,0 +1,19 @@
+{
+  "name": "rejigger",
+  "version": "0.0.1",
+  "description": "Transform an object into another object, as specified by your rejigger rule.",
+  "main": "rejigger.js",
+  "scripts": {
+    "test": "node test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/plastbox/rejigger.git"
+  },
+  "author": "Kim Helberg",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/plastbox/rejigger/issues"
+  },
+  "homepage": "https://github.com/plastbox/rejigger#readme"
+}
