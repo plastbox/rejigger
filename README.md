@@ -13,6 +13,7 @@ $ npm install rejigger
 ## Example
 
 ```javascript
+'use strict';
 var rejigger = require('rejigger');
 
 var msg = {
@@ -48,11 +49,21 @@ var test = rejigger({
 	digital_in_1: 'get(io_elements.inputs.0)',
 	digital_in_2: 'get(io_elements.inputs.1)',
 	
+	IO: {
+		digital_in_1: 'get(io_elements.inputs.0)',
+		digital_in_2: 'get(io_elements.inputs.1)'
+	},
+	IOarr: [
+		'get(io_elements.inputs.0)',
+		'get(io_elements.inputs.1)',
+		'get(io_elements.outputs.0)',
+		'get(io_elements.outputs.1)'
+	],
 	digital_out_A: 'get(io_elements.outputs.0)',
 	digital_out_B: 'get(io_elements.outputs.1)',
 	error_maybe: 'get(none.of.these.properties.exist)'
 });
-console.log(test(msg));
+console.log('test:', test(msg));
 
 // Outputs:
 {
@@ -66,6 +77,11 @@ console.log(test(msg));
 	logged_time_server: '2017-03-07T13:02:14.941Z',
 	digital_in_1: 1,
 	digital_in_2: 0,
+	IO: {
+		digital_in_1: 1,
+		digital_in_2: 0
+	},
+	IOarr: [ 1, 0, 1, 1 ],
 	digital_out_A: 1,
 	digital_out_B: 1,
 	error_maybe: undefined
