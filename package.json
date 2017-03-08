@@ -1,6 +1,6 @@
 {
   "name": "rejigger",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Transform an object into another object, as specified by your rejigger rule.",
   "main": "rejigger.js",
   "scripts": {

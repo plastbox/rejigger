@@ -1,3 +1,4 @@
+'use strict';
 var rejigger = require('.');
 
 var msg = {
@@ -33,8 +34,27 @@ var test = rejigger({
 	digital_in_1: 'get(io_elements.inputs.0)',
 	digital_in_2: 'get(io_elements.inputs.1)',
 	
+	IO: {
+		digital_in_1: 'get(io_elements.inputs.0)',
+		digital_in_2: 'get(io_elements.inputs.1)'
+	},
+	IOarr: [
+		'get(io_elements.inputs.0)',
+		'get(io_elements.inputs.1)',
+		'get(io_elements.outputs.0)',
+		'get(io_elements.outputs.1)'
+	],
 	digital_out_A: 'get(io_elements.outputs.0)',
 	digital_out_B: 'get(io_elements.outputs.1)',
 	error_maybe: 'get(none.of.these.properties.exist)'
 });
+console.log(test.toString());
 console.log('test:', test(msg));
+var start = Date.now(),
+	l = 25000,
+	i = l;
+while(--i) {
+	test(msg);
+}
+var diff = Date.now() - start;
+console.log('Rejiggering the test object ' + l + ' times took ' + diff + ' ms, indicating a speed of ' + Math.floor(1000 / diff * l) + ' rejiggerations per second.');
