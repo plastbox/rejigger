@@ -13,11 +13,11 @@ function rejigger(rules) {
 		Object.keys(rules).forEach(function(key) {
 			strRetObj+= key + ': ' + ( typeof rules[key] === 'object' ? subjigger(rules[key]) : rules[key].replace(/(get)\(([\w\.\[\]]+)\)/g, '$1("$2")')) + ",\n";
 		});
-		return '{' + strRetObj + '}';
+		return '{\n' + strRetObj + '}';
 	}
-	return new Function('msg', `function get(path) {
+	return new Function('msg', 'base', `function get(path) {
 	var tmp;
 	return (tmp = path.split('.').reduce((o,i) => { return o.hasOwnProperty(i) ? o[i] : false; }, msg)) === false ? undefined : tmp;
 };
-return ${subjigger(rules)}`);
+return Object.assign(base || {}, ${subjigger(rules)});`);
 }
