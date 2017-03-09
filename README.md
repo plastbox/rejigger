@@ -64,7 +64,8 @@ var test = rejigger({
 	error_maybe: 'get(none.of.these.properties.exist)'
 });
 console.log('test:', test(msg));
-
+```
+```javascript
 // Outputs:
 {
 	trans_reason: 69,
@@ -86,4 +87,58 @@ console.log('test:', test(msg));
 	digital_out_B: 1,
 	error_maybe: undefined
 }
+```
+
+## Extending an existing object
+Rejigger supports extending existing objects. You can even wrap several levels of rejiggering!
+## Example
+
+```javascript
+'use strict';
+var rejigger = require('rejigger');
+var data = {
+	date: new Date,
+	firstname: 'John',
+	lastname: 'Smith',
+	entries: [
+		{act: 1, date: new Date(Date.now() - 5000)},
+		{act: 0, date: new Date(Date.now() - 15000)},
+		{act: 1, date: new Date(Date.now() - 345000)},
+		{act: 0, date: new Date(Date.now() - 513000)}
+	]
+};
+
+var outer = rejigger({
+	name: 'get(firstname) + " " + get(lastname)',
+});
+var inner = rejigger({
+	action: 'get(act) == 1 ? "login" : "logout"',
+	time: 'get(date)'
+});
+
+console.log(data.entries.map(function(entry) {
+	return inner(entry, outer(data));
+}));
+```
+```javascript
+// Outputs:
+[
+	{
+		name: 'John Smith',
+		action: 'login',
+		time: 2017-03-09T19:52:58.476Z
+	}, {
+		name: 'John Smith',
+		action: 'logout',
+		time: 2017-03-09T19:52:48.476Z
+	}, {
+		name: 'John Smith',
+		action: 'login',
+		time: 2017-03-09T19:47:18.476Z
+	}, {
+		name: 'John Smith',
+		action: 'logout',
+		time: 2017-03-09T19:44:30.476Z
+	}
+]
 ```
