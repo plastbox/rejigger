@@ -126,19 +126,19 @@ console.log(data.entries.map(function(entry) {
 	{
 		name: 'John Smith',
 		action: 'login',
-		time: 2017-03-09T19:52:58.476Z
+		time: '2017-03-09T19:52:58.476Z'
 	}, {
 		name: 'John Smith',
 		action: 'logout',
-		time: 2017-03-09T19:52:48.476Z
+		time: '2017-03-09T19:52:48.476Z'
 	}, {
 		name: 'John Smith',
 		action: 'login',
-		time: 2017-03-09T19:47:18.476Z
+		time: '2017-03-09T19:47:18.476Z'
 	}, {
 		name: 'John Smith',
 		action: 'logout',
-		time: 2017-03-09T19:44:30.476Z
+		time: '2017-03-09T19:44:30.476Z'
 	}
 ]
 ```
