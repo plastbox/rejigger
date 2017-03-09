@@ -142,3 +142,6 @@ console.log(data.entries.map(function(entry) {
 	}
 ]
 ```
+License
+----
+ISC
