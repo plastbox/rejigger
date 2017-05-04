@@ -6,12 +6,12 @@ function rejigger(rules) {
 		var strRetObj = '';
 		if(rules instanceof Array) {
 			Object.keys(rules).forEach(function(key) {
-				strRetObj+= ( typeof rules[key] === 'object' ? subjigger(rules[key]) : rules[key].replace(/(get)\(([\w\.\[\]]+)\)/g, '$1("$2")')) + ",\n";
+				strRetObj+= ( typeof rules[key] === 'object' ? subjigger(rules[key]) : rules[key].replace(/(get)\(([\w\(\) \.\[\]]+)\)/g, '$1("$2")').replace(/\]/g, '').replace(/\[/g, '.')) + ",\n";
 			});		
 			return '[' + strRetObj + ']';
 		}
 		Object.keys(rules).forEach(function(key) {
-			strRetObj+= key + ': ' + ( typeof rules[key] === 'object' ? subjigger(rules[key]) : rules[key].replace(/(get)\(([\w\.\[\]]+)\)/g, '$1("$2")')) + ",\n";
+			strRetObj+= key + ': ' + ( typeof rules[key] === 'object' ? subjigger(rules[key]) : rules[key].replace(/(get)\(([\w\(\) \.\[\]]+)\)/g, '$1("$2")').replace(/\]/g, '').replace(/\[/g, '.')) + ",\n";
 		});
 		return '{\n' + strRetObj + '}';
 	}
